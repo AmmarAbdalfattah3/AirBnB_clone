@@ -1,0 +1,3 @@
+This is the first step towards building your my full web application: the AirBnB clone. This first step is very important
+because I will use what I build during this project with all other following projects: HTML/CSS templating, database stora
+ge, API, front-end integration....
