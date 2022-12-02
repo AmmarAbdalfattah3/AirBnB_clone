@@ -53,7 +53,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def default(self, args):
-        """ Default function handles special command syntax"""
+        """ Default the function handles special command syntax"""
         commands = {"all": self.do_all,
                   "update": self.do_update,
                   "show": self.do_show,
