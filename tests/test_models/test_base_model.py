@@ -23,7 +23,7 @@ class TestBaseModel(unittest.TestCase):
     def test_id_variable(self):
         """Test case for id variable"""
         key_model = self._model
-        key_model2 = self.model2
+        key_model2 = self._model2
         self.assertTrue(hasattr(key_model.id))
         self.assertTrue(type(key_model.id) is str)
         self.assertNotEqual(key_model.id, key_model2.id)
