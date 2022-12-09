@@ -24,6 +24,7 @@ model_classes = [
     "Review"
 ]
 
+
 def class_name(args):
     if len(args) == 0:
         print("** class name missing **")
@@ -40,25 +41,27 @@ class HBNBCommand(cmd.Cmd):
         point of the command interpreter
     """
     prompt = "(hbnb) "
+
     def do_quit(self, args):
         """Quit command to exit the program"""
         return True
+
     def do_EOF(self, args):
         """exit the program"""
         print("")
         return True
 
     def emptyline(self):
-        """an empty line + ENTER shouldn’t execute anything"""
+        """an empty line + ENTER shouldn't execute anything"""
         pass
 
     def default(self, args):
         """ Default the function handles special command syntax"""
         commands = {"all": self.do_all,
-                  "update": self.do_update,
-                  "show": self.do_show,
-                  "count": self.do_count,
-                  "destroy": self.do_destroy}
+                    "update": self.do_update,
+                    "show": self.do_show,
+                    "count": self.do_count,
+                    "destroy": self.do_destroy}
 
         cleaner = (args.replace("(", ".").replace(")", ".")
                     .replace('"', "").replace(",", "").split("."))
@@ -71,7 +74,6 @@ class HBNBCommand(cmd.Cmd):
         except:
             print("*** Unknown syntax:", args[0])
 
-
     def do_create(self, args):
         """Creates a new instance of BaseModel,
            saves it (to the JSON file) and prints the id.
@@ -83,8 +85,6 @@ class HBNBCommand(cmd.Cmd):
         model = eval(list_args[0])()
         model.save()
         print(model.id)
-
-
 
     def do_show(self, args):
         """Prints the string representation of an instance
@@ -103,6 +103,7 @@ class HBNBCommand(cmd.Cmd):
             print(obj)
         except KeyError:
             print("** no instance found **")
+
     def do_destroy(self, args):
         """Deletes an instance based on the class name
            and id (save the change into the JSON file).
@@ -121,6 +122,7 @@ class HBNBCommand(cmd.Cmd):
 
         except KeyError:
             print("** no instance found **")
+
     def do_all(self, args):
         rel_dict = storage.all()
         if not args:
@@ -132,6 +134,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print([str(obj) for obj in rel_dict.values()
                        if list_args[0] in str(obj)])
+
     def do_update(self, args):
         """Updates an instance based on the class name and id by
            adding or updating attribute (save the change into the JSON file).
@@ -153,7 +156,7 @@ class HBNBCommand(cmd.Cmd):
         key = list_args[0] + "." + list_args[1]
 
         try:
-            obj= reloaded_dict[key]
+            obj = reloaded_dict[key]
             try:
                 attr_type = type(getattr(obj, list_args[2]))
                 list_args[3] = eval(attr_type.__name__)(list_args[3])
@@ -173,7 +176,7 @@ class HBNBCommand(cmd.Cmd):
         list_args = class_name(args)
         if not list_args:
             return
-        
+
         for key, value in reloaded_dict.items():
             if list_args[0] == type(value).__name__:
                 counter += 1
