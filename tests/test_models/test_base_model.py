@@ -6,7 +6,7 @@ import io
 from contextlib import redirect_stdout
 from datetime import datetime
 from time import sleep
-from ....models.base_model import BaseModel
+from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
     """Class to test the 'base_model' file"""
