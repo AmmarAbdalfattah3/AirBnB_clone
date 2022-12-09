@@ -64,14 +64,14 @@ class HBNBCommand(cmd.Cmd):
                     "destroy": self.do_destroy}
 
         cleaner = (args.replace("(", ".").replace(")", ".")
-                    .replace('"', "").replace(",", "").split("."))
+                   .replace('"', "").replace(",", "").split("."))
 
         try:
             n_args = cleaner[0] + " " + cleaner[2]
             print(n_args)
             command = commands[cleaner[1]]
             command(n_args)
-        except:
+        except Exception:
             print("*** Unknown syntax:", args[0])
 
     def do_create(self, args):
@@ -181,6 +181,7 @@ class HBNBCommand(cmd.Cmd):
             if list_args[0] == type(value).__name__:
                 counter += 1
         print(counter)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
