@@ -24,7 +24,7 @@ class TestBaseModel(unittest.TestCase):
         """Test case for id variable"""
         key_model = self._model
         key_model2 = self._model2
-        self.assertTrue(hasattr(key_model.id))
+        self.assertTrue(hasattr(key_model, key_model.id))
         self.assertTrue(type(key_model.id) is str)
         self.assertNotEqual(key_model.id, key_model2.id)
 
@@ -52,7 +52,7 @@ class TestBaseModel(unittest.TestCase):
            calling 'save()' method
         """
         t_model = self._model
-        before = t_mode.created_at.second
+        before = t_model.created_at.second
         sleep(3)
         t_model.save()
         after = t_mode.updated_at.second
