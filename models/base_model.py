@@ -4,6 +4,7 @@ from uuid import uuid4
 from datetime import datetime
 from models import storage
 
+
 class BaseModel:
     """ BaseModel class that defines all common
         attributes/methods for other classes
@@ -12,12 +13,11 @@ class BaseModel:
         """instantiates the created instance"""
         if kwargs:
             if "__class__" in kwargs.keys():
-                    del kwargs["__class__"]
+                del kwargs["__class__"]
 
             for key, value in kwargs.items():
                 if key in ("created_at", "updated_at"):
                     kwargs[key] = datetime.fromisoformat(value)
-
 
             self.__dict__ = kwargs
 
@@ -33,8 +33,6 @@ class BaseModel:
         """
         self.updated_at = datetime.now()
         storage.save()
-
-
 
     def to_dict(self):
         """returns a dictionary containing all
