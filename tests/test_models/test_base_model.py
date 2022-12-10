@@ -6,7 +6,7 @@ import io
 from contextlib import redirect_stdout
 from datetime import datetime
 from time import sleep
-from ....models.base_model import BaseModel
+from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
     """Class to test the 'base_model' file"""
@@ -23,8 +23,8 @@ class TestBaseModel(unittest.TestCase):
     def test_id_variable(self):
         """Test case for id variable"""
         key_model = self._model
-        key_model2 = self.model2
-        self.assertTrue(hasattr(key_model.id))
+        key_model2 = self._model2
+        self.assertTrue(hasattr(key_model, "id"))
         self.assertTrue(type(key_model.id) is str)
         self.assertNotEqual(key_model.id, key_model2.id)
 
@@ -52,10 +52,10 @@ class TestBaseModel(unittest.TestCase):
            calling 'save()' method
         """
         t_model = self._model
-        before = t_mode.created_at.second
+        before = t_model.created_at.second
         sleep(3)
         t_model.save()
-        after = t_mode.updated_at.second
+        after = t_model.updated_at.second
         self.assertNotEqual(before, after)
         self.assertGreater(after, before)
 
@@ -69,7 +69,7 @@ class TestBaseModel(unittest.TestCase):
         t_model = self._model
         t_dict = t_model.to_dict()
         self.assertTrue(type(t_dict) is dict)
-        self.assertTrue("__clase__" in t_dict.keys())
+        self.assertTrue("__class__" in t_dict.keys())
         signal = True
         for key, value in t_model.__dict__.items():
             if key not in t_dict:
