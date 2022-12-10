@@ -14,6 +14,6 @@ class TestUser(TestBaseModel):
         """Set up a two instance before each a test case,
            In addition to instance variable containing the model name.
         """
-        self.model = User()
+        self._model = User()
         self._model2 = User()
         self._name_class = "User"
