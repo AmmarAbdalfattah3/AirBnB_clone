@@ -104,7 +104,7 @@ class TestBaseModel(unittest.TestCase):
         """Test that '__str__' method prints the required output"""
         t_model = self._model
         file = io.StringIO()
-        str_output = "[{}] ({}) {}".format(self._name_class, t_model.id, t_model.__dict__)
+        str_output = "[{}] ({}) {}".format(self.__class__.__name__, t_model.id, t_model.__dict__)
         with redirect_stdout(file):
             print(t_model)
         self.assertEqual(file.getvalue(), str_output)
