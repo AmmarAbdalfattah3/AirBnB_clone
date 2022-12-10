@@ -72,7 +72,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue("__clase__" in t_dict.keys())
         signal = True
         for key, value in t_model.__dict__.items():
-            if key not in t_dic:
+            if key not in t_dict:
                 signal = False
         self.assertTrue(signal)
 
